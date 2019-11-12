@@ -23,16 +23,6 @@
 * Написать role для установки и настройки nginx с несколькими виртуал-хостами
 
 
-|defaults        |main.yml               |           
-|files           |index.site1.html       |
-|                |index.site2.html       |
-|handlers        |main.yml               |
-|tasks           |main.yml               |
-|templates       |hosts.j2               |        
-                 |nginx.conf.j2          |
-                 |site.conf.j2           |   
-
-
  - Создать директорию default, в файле main.yml объявить глобальную переменную
  - Создать директорию files, в ней разместить свои Index файлы
  - Создать директорию handlers, в файле main.yml описать свои handlers
