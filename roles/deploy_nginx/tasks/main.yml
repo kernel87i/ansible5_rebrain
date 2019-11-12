@@ -1,0 +1,64 @@
+---
+# tasks file for deploy_nginx
+
+- name: Install Nginx web server
+  yum:
+    name: nginx
+    state: latest
+
+- name: Removing default nginx
+  file:
+    path: /etc/nginx/nginx.conf
+    state: absent
+
+- name: Adding nginx configuration
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Reload Nginx
+
+- name: Adding site configuration
+  template:
+    src: site.conf.j2
+    dest: /etc/nginx/conf.d/site.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Reload Nginx
+
+- name: Copy file index example  with owner and permissions
+  copy:
+    src: "{{ item }}"
+    dest: "{{ root_directory }}"
+    owner: root
+    group: root
+    mode: 0644
+  loop:
+    - "index.site1.html"
+    - "index.site2.html"
+  notify: Reload Nginx
+
+- name: Start Nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Port forwarding virtual host  firewalld
+  firewalld:
+    port: 80/tcp
+    permanent: yes
+    state: enabled
+
+- name: Change /etc/hosts
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart firewalld
+

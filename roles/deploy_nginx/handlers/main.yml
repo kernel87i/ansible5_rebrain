@@ -1,0 +1,12 @@
+---
+# handlers file for deploy_nginx
+
+- name: Reload Nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: Restart firewalld
+  service:
+    name: firewalld
+    state: restarted

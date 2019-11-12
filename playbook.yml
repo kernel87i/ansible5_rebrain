@@ -1,0 +1,11 @@
+##########################################
+############# Install Nginx ##############
+##########################################
+
+---
+- name: Install Nginx web server
+  hosts: production
+  become: yes
+
+  roles: 
+    - deploy_nginx
