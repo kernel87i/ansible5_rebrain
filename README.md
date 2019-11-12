@@ -22,20 +22,16 @@
 * Используемые переменные должны иметь несколько значений и перебираться в конструкции {% for item in items %} или подобной
 * Написать role для установки и настройки nginx с несколькими виртуал-хостами
 
-.
-├── defaults
-│   └── main.yml
-├── files
-│   ├── index.site1.html
-│   └── index.site2.html
-├── handlers
-│   └── main.yml
-├── tasks
-│   └── main.yml
-└── templates
-    ├── hosts.j2
-    ├── nginx.conf.j2
-    └── site.conf.j2
+
+|defaults        |main.yml               |           
+|files           |index.site1.html       |
+|                |index.site2.html       |
+|handlers        |main.yml               |
+|tasks           |main.yml               |
+|templates       |hosts.j2               |        
+                 |nginx.conf.j2          |
+                 |site.conf.j2           |   
+
 
  - Создать директорию default, в файле main.yml объявить глобальную переменную
  - Создать директорию files, в ней разместить свои Index файлы
@@ -47,7 +43,7 @@
 
 ## Подключаемся по ssh.
 
-* ssh root@31.184.252.46
+* ssh root@95.213.191.44
 
 ## Проверяем подключение по 80 порту к виртуальным хостам 
 
